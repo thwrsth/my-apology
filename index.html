@@ -67,11 +67,15 @@
         <p class="heart">❤️</p>
         <button class="button" onclick="showCoupons()">Forgive Me?</button>
         <p id="coupon1" class="coupon" onclick="redeemCoupon('Free Hug & Dinner Date Coupon')">🎟 Free Hug & Dinner Date Coupon 🎟</p>
-        <p id="coupon2" class="coupon" onclick="redeemCoupon('Free Anything Kiss Coupon')">🎟 Free Anything Kiss Coupon 🎟</p>
+        <p id="coupon2" class="coupon" onclick="redeemCoupon('Free Any Kiss Coupon')">🎟 Free Anything Kiss Coupon 🎟</p>
         <p id="coupon3" class="coupon" onclick="redeemCoupon('Free Lay On My Shoulders Coupon')">🎟 Free Lay On My Shoulders Coupon 🎟</p>
     </div>
 
     <script>
+        function showPopup() {
+            alert("I hope you can forgive me. I love you! ❤️");
+        }
+        
         function showCoupons() {
             document.getElementById("coupon1").style.display = "block";
             document.getElementById("coupon2").style.display = "block";
@@ -79,16 +83,18 @@
             alert("I hope you can forgive me. I love you.");
         }
 
-        function redeemCoupon(couponText) {
-            alert("You redeemed: " + couponText);
-            
-            // Send WhatsApp message via WhatsApp API
-            let phoneNumber = "085727755133"; // Replace with your WhatsApp number
-            let message = "Your girlfriend redeemed: " + couponText;
-            let whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        }
+        function redeemCoupon(couponId) {
+        let couponText = document.getElementById(couponId).innerText;
+        
+        // Show pop-up message
+        alert("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖");
+
+        // Send WhatsApp notification
+        let phoneNumber = "085727755133"; // Replace with your WhatsApp number
+        let message = encodeURIComponent("Hey love! 💕 You just redeemed: " + couponText + " 😘 I'll fulfill it soon!");
+        let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
+
+        window.open(whatsappURL, "_blank");
     </script>
 </body>
 </html>
