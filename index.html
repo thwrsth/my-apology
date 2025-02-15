@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 15%;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff4d4d;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .heart {
+            color: #ff4d4d;
+            font-size: 3em;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .button {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #e60000;
+        }
+        .coupon {
+            display: none;
+            font-size: 1.5em;
+            color: #ffffff;
+            background-color: #ff4d4d;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>I'm Sorry, My Love</h1>
+        <p>I apologize for all the pain I caused. I let jealousy take over me, and I made you feel guilty. I can feel how painful it is to be you, who used to try but didn't. I apologize for all my selfishness. I want us to make up, just like the beginning and forget all the problems that exist. We just consider them a passing wind, okay?</p>
+        <p>YOU MEAN A LOT TO ME</p>
+        <p class="heart">❤️</p>
+        <button class="button" onclick="showCoupons()">Forgive Me?</button>
+        <p id="coupon1" class="coupon" onclick="redeemCoupon('Free Hug & Dinner Date Coupon')">🎟 Free Hug & Dinner Date Coupon 🎟</p>
+        <p id="coupon2" class="coupon" onclick="redeemCoupon('Free Anything Kiss Coupon')">🎟 Free Anything Kiss Coupon 🎟</p>
+        <p id="coupon3" class="coupon" onclick="redeemCoupon('Free Lay On My Shoulders Coupon')">🎟 Free Lay On My Shoulders Coupon 🎟</p>
+    </div>
+
+    <script>
+        function showCoupons() {
+            document.getElementById("coupon1").style.display = "block";
+            document.getElementById("coupon2").style.display = "block";
+            document.getElementById("coupon3").style.display = "block";
+            alert("I hope you can forgive me. I love you.");
+        }
+
+        function redeemCoupon(couponText) {
+            alert("You redeemed: " + couponText);
+            
+            // Send WhatsApp message via WhatsApp API
+            let phoneNumber = "085727755133"; // Replace with your WhatsApp number
+            let message = "Your girlfriend redeemed: " + couponText;
+            let whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
