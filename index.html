@@ -80,8 +80,13 @@
             document.getElementById("coupon3").style.display = "block";
 
             // Show popup
+           <script src="script.js">
+        let noSize = 1.5; // Initial font size in em
+
+        function sayYes() {
             alert("I hope you can forgive me. I love you.");
-        });
+            launchConfetti();
+        }
 
         // Add click event to each coupon
         document.getElementById("coupon1").addEventListener("click", function () {
