@@ -108,7 +108,7 @@
         <p>I apologize for all the pain I caused. I let jealousy take over me, and I made you feel guilty. I can feel how painful it is to be you, who used to try but didn't. I apologize for all my selfishness. I want us to make up, just like the beginning and forget all the problems that exist. We just consider them a passing wind, okay?</p>
         <p>YOU MEAN A LOT TO ME</p>
         <p class="heart">❤️</p>
-        <button class="button" onclick="showPopup('I hope you can forgive me. I love you! ❤️')">Forgive Me?</button>
+        <button class="button" onclick="showPopupAndCoupons()">Forgive Me?</button>
         
         <p id="coupon1" class="coupon" onclick="redeemCoupon('Free Hug & Dinner Date Coupon')">🎟 Free Hug & Dinner Date Coupon 🎟</p>
         <p id="coupon2" class="coupon" onclick="redeemCoupon('Free Any Kiss Coupon')">🎟 Free Anything Kiss Coupon 🎟</p>
@@ -131,17 +131,28 @@
             document.getElementById("popup").style.display = "none";
         }
 
+        function showPopupAndCoupons() {
+            showPopup("I hope you can forgive me. I love you! ❤️");
+
+            // Show the coupons after a short delay (to make it feel smooth)
+            setTimeout(() => {
+                document.getElementById("coupon1").style.display = "block";
+                document.getElementById("coupon2").style.display = "block";
+                document.getElementById("coupon3").style.display = "block";
+            }, 1000);
+        }
+
         function redeemCoupon(couponText) {
             showPopup("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖");
 
-            // Send WhatsApp notification
-            let phoneNumber = "6285727755133"; // Your WhatsApp number (international format)
-            let message = encodeURIComponent("Hey love! 💕 You just redeemed: " + couponText + " 😘 I'll fulfill it soon!");
-            let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
-
+            // Send WhatsApp notification after 2 seconds
             setTimeout(() => {
+                let phoneNumber = "6285727755133"; // Use international format
+                let message = encodeURIComponent("Hey love! 💕 You just redeemed: " + couponText + " 😘 I'll fulfill it soon!");
+                let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
+
                 window.location.href = whatsappURL;
-            }, 2000); // Delay WhatsApp redirection for 2 seconds
+            }, 2000);
         }
     </script>
 </body>
