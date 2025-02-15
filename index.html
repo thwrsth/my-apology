@@ -57,6 +57,49 @@
             margin-top: 20px;
             cursor: pointer;
         }
+
+        /* CUTE POP-UP STYLING */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url('https://i.imgur.com/qKjpmtM.png'); /* Cute heart background */
+            background-size: cover;
+            width: 80%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .popup-content {
+            font-size: 1.5em;
+            color: #ffffff;
+        }
+
+        .popup button {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .popup button:hover {
+            background-color: #e60000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -55%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
     </style>
 </head>
 <body>
@@ -65,50 +108,40 @@
         <p>I apologize for all the pain I caused. I let jealousy take over me, and I made you feel guilty. I can feel how painful it is to be you, who used to try but didn't. I apologize for all my selfishness. I want us to make up, just like the beginning and forget all the problems that exist. We just consider them a passing wind, okay?</p>
         <p>YOU MEAN A LOT TO ME</p>
         <p class="heart">❤️</p>
-        <button class="button" id="forgiveBtn">Forgive Me?</button>
+        <button class="button" onclick="showPopup('I hope you can forgive me. I love you! ❤️')">Forgive Me?</button>
         
-        <p id="coupon1" class="coupon">🎟 Free Hug & Dinner Date Coupon 🎟</p>
-        <p id="coupon2" class="coupon">🎟 Free Anything Kiss Coupon 🎟</p>
-        <p id="coupon3" class="coupon">🎟 Free Lay On My Shoulders Coupon 🎟</p>
+        <p id="coupon1" class="coupon" onclick="redeemCoupon('Free Hug & Dinner Date Coupon')">🎟 Free Hug & Dinner Date Coupon 🎟</p>
+        <p id="coupon2" class="coupon" onclick="redeemCoupon('Free Any Kiss Coupon')">🎟 Free Anything Kiss Coupon 🎟</p>
+        <p id="coupon3" class="coupon" onclick="redeemCoupon('Free Lay On My Shoulders Coupon')">🎟 Free Lay On My Shoulders Coupon 🎟</p>
+    </div>
+
+    <!-- Cute Pop-Up Box -->
+    <div id="popup" class="popup">
+        <p id="popup-text" class="popup-content"></p>
+        <button onclick="closePopup()">OK</button>
     </div>
 
     <script>
-        document.getElementById("forgiveBtn").addEventListener("click", function () {
-            // Show the coupons
-            document.getElementById("coupon1").style.display = "block";
-            document.getElementById("coupon2").style.display = "block";
-            document.getElementById("coupon3").style.display = "block";
+        function showPopup(message) {
+            document.getElementById("popup-text").innerText = message;
+            document.getElementById("popup").style.display = "block";
+        }
 
-            // Show popup
-            alert("I hope you can forgive me. I love you.");
-        });
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
 
-        // Add click event to each coupon
-        document.getElementById("coupon1").addEventListener("click", function () {
-            redeemCoupon("coupon1");
-        });
-
-        document.getElementById("coupon2").addEventListener("click", function () {
-            redeemCoupon("coupon2");
-        });
-
-        document.getElementById("coupon3").addEventListener("click", function () {
-            redeemCoupon("coupon3");
-        });
-
-        function redeemCoupon(couponId) {
-            let couponText = document.getElementById(couponId).innerText;
-
-            // Show pop-up message
-            alert("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖");
+        function redeemCoupon(couponText) {
+            showPopup("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖");
 
             // Send WhatsApp notification
             let phoneNumber = "6285727755133"; // Your WhatsApp number (international format)
             let message = encodeURIComponent("Hey love! 💕 You just redeemed: " + couponText + " 😘 I'll fulfill it soon!");
             let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
 
-            // Use window.location.href instead of window.open()
-            window.location.href = whatsappURL;
+            setTimeout(() => {
+                window.location.href = whatsappURL;
+            }, 2000); // Delay WhatsApp redirection for 2 seconds
         }
     </script>
 </body>
