@@ -65,19 +65,36 @@
         <p>I apologize for all the pain I caused. I let jealousy take over me, and I made you feel guilty. I can feel how painful it is to be you, who used to try but didn't. I apologize for all my selfishness. I want us to make up, just like the beginning and forget all the problems that exist. We just consider them a passing wind, okay?</p>
         <p>YOU MEAN A LOT TO ME</p>
         <p class="heart">❤️</p>
-        <button class="button" onclick="showCoupons()">Forgive Me?</button>
-        <p id="coupon1" class="coupon" onclick="redeemCoupon('coupon1')">🎟 Free Hug & Dinner Date Coupon 🎟</p>
-        <p id="coupon2" class="coupon" onclick="redeemCoupon('coupon2')">🎟 Free Anything Kiss Coupon 🎟</p>
-        <p id="coupon3" class="coupon" onclick="redeemCoupon('coupon3')">🎟 Free Lay On My Shoulders Coupon 🎟</p>
+        <button class="button" id="forgiveBtn">Forgive Me?</button>
+        
+        <p id="coupon1" class="coupon">🎟 Free Hug & Dinner Date Coupon 🎟</p>
+        <p id="coupon2" class="coupon">🎟 Free Anything Kiss Coupon 🎟</p>
+        <p id="coupon3" class="coupon">🎟 Free Lay On My Shoulders Coupon 🎟</p>
     </div>
 
     <script>
-        function showCoupons() {
+        document.getElementById("forgiveBtn").addEventListener("click", function () {
+            // Show the coupons
             document.getElementById("coupon1").style.display = "block";
             document.getElementById("coupon2").style.display = "block";
             document.getElementById("coupon3").style.display = "block";
+
+            // Show popup
             alert("I hope you can forgive me. I love you.");
-        }
+        });
+
+        // Add click event to each coupon
+        document.getElementById("coupon1").addEventListener("click", function () {
+            redeemCoupon("coupon1");
+        });
+
+        document.getElementById("coupon2").addEventListener("click", function () {
+            redeemCoupon("coupon2");
+        });
+
+        document.getElementById("coupon3").addEventListener("click", function () {
+            redeemCoupon("coupon3");
+        });
 
         function redeemCoupon(couponId) {
             let couponText = document.getElementById(couponId).innerText;
@@ -86,11 +103,12 @@
             alert("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖");
 
             // Send WhatsApp notification
-            let phoneNumber = "6285727755133"; // WhatsApp number (use international format)
+            let phoneNumber = "6285727755133"; // Your WhatsApp number (international format)
             let message = encodeURIComponent("Hey love! 💕 You just redeemed: " + couponText + " 😘 I'll fulfill it soon!");
             let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
 
-            window.open(whatsappURL, "_blank");
+            // Use window.location.href instead of window.open()
+            window.location.href = whatsappURL;
         }
     </script>
 </body>
