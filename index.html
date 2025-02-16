@@ -59,13 +59,13 @@
         }
 
         /* CUTE POP-UP STYLING */
-        .popup {
+       .popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ffcccc; /* Cute pink background */
+    background-color: #ffcccc; /* Cute light pink */
     width: 80%;
     max-width: 400px;
     padding: 20px;
@@ -75,7 +75,7 @@
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Cute border with glowing effect */
+/* Optional: Cute glowing border effect */
 .popup::before {
     content: "";
     position: absolute;
@@ -91,7 +91,7 @@
 
 .popup-content {
     font-size: 1.5em;
-    color: #ffffff;
+    color: #333; /* Dark text for contrast */
 }
 
 .popup button {
@@ -136,10 +136,11 @@
     </div>
 
     <script>
-        function showPopup(message, bgColor) {
+        function showPopup(message, bgColor = "#ffcccc") { // Default to light pink
+    let popup = document.getElementById("popup");
+    popup.style.background = bgColor; // Set background color
+    popup.style.display = "block";
     document.getElementById("popup-text").innerText = message;
-    document.getElementById("popup").style.backgroundColor = bgColor; // Change background color dynamically
-    document.getElementById("popup").style.display = "block";
 }
 
 function closePopup() {
@@ -147,9 +148,9 @@ function closePopup() {
 }
 
 function showPopupAndCoupons() {
-    showPopup("I hope you can forgive me. I love you! ❤️", "#ffcccc"); // Cute light pink
+    showPopup("I hope you can forgive me. I love you! ❤️", "#ffd1dc"); // Light pastel pink
 
-    // Show the coupons after a short delay
+    // Show coupons after a delay
     setTimeout(() => {
         document.getElementById("coupon1").style.display = "block";
         document.getElementById("coupon2").style.display = "block";
@@ -158,8 +159,9 @@ function showPopupAndCoupons() {
 }
 
 function redeemCoupon(couponText) {
-    showPopup("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖", "#ff99cc"); // Light purple-pink
+    showPopup("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖", "#ffb6c1"); // Soft pink
 }
+        
                 let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
 
                 window.location.href = whatsappURL;
