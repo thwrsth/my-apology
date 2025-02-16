@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Sorry</title>
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -50,7 +51,7 @@
         .coupon {
             display: none;
             font-size: 1.5em;
-            color: #ffffff;
+            color: white;
             background-color: #ff4d4d;
             padding: 10px;
             border-radius: 10px;
@@ -59,61 +60,47 @@
         }
 
         /* CUTE POP-UP STYLING */
-       .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffcccc; /* Cute light pink */
-    width: 80%;
-    max-width: 400px;
-    padding: 20px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-in-out;
-}
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffcccc; /* Soft pink background */
+            width: 80%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-in-out;
+        }
 
-/* Optional: Cute glowing border effect */
-.popup::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(45deg, #ff99cc, #ff6666, #ffcc99);
-    z-index: -1;
-    border-radius: 20px;
-    filter: blur(5px);
-}
+        .popup-content {
+            font-size: 1.5em;
+            color: #333;
+        }
 
-.popup-content {
-    font-size: 1.5em;
-    color: #333; /* Dark text for contrast */
-}
+        .popup button {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
 
-.popup button {
-    background-color: #ff4d4d;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.2em;
-    margin-top: 10px;
-}
+        .popup button:hover {
+            background-color: #e60000;
+        }
 
-.popup button:hover {
-    background-color: #e60000;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -55%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}
-        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -55%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
     </style>
 </head>
 <body>
@@ -136,32 +123,33 @@
     </div>
 
     <script>
-        function showPopup(message, bgColor = "#ffcccc") { // Default to light pink
-    let popup = document.getElementById("popup");
-    popup.style.background = bgColor; // Set background color
-    popup.style.display = "block";
-    document.getElementById("popup-text").innerText = message;
-}
+        function showPopup(message) {
+            document.getElementById("popup-text").innerText = message;
+            document.getElementById("popup").style.display = "block";
+        }
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
 
-function showPopupAndCoupons() {
-    showPopup("I hope you can forgive me. I love you! ❤️", "#ffd1dc"); // Light pastel pink
+        function showPopupAndCoupons() {
+            showPopup("I hope you can forgive me. I love you! ❤️");
 
-    // Show coupons after a delay
-    setTimeout(() => {
-        document.getElementById("coupon1").style.display = "block";
-        document.getElementById("coupon2").style.display = "block";
-        document.getElementById("coupon3").style.display = "block";
-    }, 1000);
-}
+            // Show the coupons after a short delay
+            setTimeout(() => {
+                document.getElementById("coupon1").style.display = "block";
+                document.getElementById("coupon2").style.display = "block";
+                document.getElementById("coupon3").style.display = "block";
+            }, 1000);
+        }
 
-function redeemCoupon(couponText) {
-    showPopup("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖", "#ffb6c1"); // Soft pink
-}
-        
+        function redeemCoupon(couponText) {
+            showPopup("You redeemed: " + couponText + "\nI'll make it happen, my love! 💖");
+
+            // Send WhatsApp notification after 2 seconds
+            setTimeout(() => {
+                let phoneNumber = "6285727755133"; // Use international format
+                let message = encodeURIComponent("Hey love! 💕 You just redeemed: " + couponText + " 😘 I'll fulfill it soon!");
                 let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
 
                 window.location.href = whatsappURL;
