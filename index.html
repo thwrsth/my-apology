@@ -15,7 +15,7 @@
             padding: 0;
         }
         .container {
-            margin-top: 15%;
+            margin-top: 10%;
             padding: 20px;
         }
         h1 {
@@ -44,29 +44,34 @@
             font-size: 1.2em;
             cursor: pointer;
             margin-top: 20px;
+            transition: 0.3s;
         }
         .button:hover {
             background-color: #e60000;
         }
         .coupon {
             display: none;
-            font-size: 1.5em;
+            font-size: 1.3em;
             color: white;
             background-color: #ff4d4d;
             padding: 10px;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 15px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        .coupon:hover {
+            background-color: #e60000;
         }
 
-        /* CUTE POP-UP STYLING */
+        /* Pop-up Styling */
         .popup {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #ffcccc; /* Soft pink background */
+            background-color: #ffcccc; /* Soft pink */
             width: 80%;
             max-width: 400px;
             padding: 20px;
@@ -76,12 +81,10 @@
             z-index: 1000;
             animation: fadeIn 0.3s ease-in-out;
         }
-
         .popup-content {
             font-size: 1.5em;
             color: #333;
         }
-
         .popup button {
             background-color: #ff4d4d;
             color: white;
@@ -92,11 +95,9 @@
             font-size: 1.2em;
             margin-top: 10px;
         }
-
         .popup button:hover {
             background-color: #e60000;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translate(-50%, -55%); }
             to { opacity: 1; transform: translate(-50%, -50%); }
@@ -109,20 +110,28 @@
         <p>I apologize for all the pain I caused. I let jealousy take over me, and I made you feel guilty. I can feel how painful it is to be you, who used to try but didn't. I apologize for all my selfishness. I want us to make up, just like the beginning and forget all the problems that exist. We just consider them a passing wind, okay?</p>
         <p>YOU MEAN A LOT TO ME</p>
         <p class="heart">❤️</p>
-        <button class="button" onclick="showPopupAndCoupons()">Forgive Me?</button>
+        <button id="forgiveButton" class="button">Forgive Me?</button>
         
-        <p id="coupon1" class="coupon" onclick="redeemCoupon('Free Hug & Dinner Date Coupon')">🎟 Free Hug & Dinner Date Coupon 🎟</p>
-        <p id="coupon2" class="coupon" onclick="redeemCoupon('Free Any Kiss Coupon')">🎟 Free Anything Kiss Coupon 🎟</p>
-        <p id="coupon3" class="coupon" onclick="redeemCoupon('Free Lay On My Shoulders Coupon')">🎟 Free Lay On My Shoulders Coupon 🎟</p>
+        <p id="coupon1" class="coupon">🎟 Free Hug & Dinner Date Coupon 🎟</p>
+        <p id="coupon2" class="coupon">🎟 Free Any Kiss Coupon 🎟</p>
+        <p id="coupon3" class="coupon">🎟 Free Lay On My Shoulders Coupon 🎟</p>
     </div>
 
-    <!-- Cute Pop-Up Box -->
+    <!-- Pop-up Box -->
     <div id="popup" class="popup">
         <p id="popup-text" class="popup-content"></p>
         <button onclick="closePopup()">OK</button>
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ensure JavaScript runs after page loads
+            document.getElementById("forgiveButton").addEventListener("click", showPopupAndCoupons);
+            document.getElementById("coupon1").addEventListener("click", function() { redeemCoupon('Free Hug & Dinner Date Coupon'); });
+            document.getElementById("coupon2").addEventListener("click", function() { redeemCoupon('Free Any Kiss Coupon'); });
+            document.getElementById("coupon3").addEventListener("click", function() { redeemCoupon('Free Lay On My Shoulders Coupon'); });
+        });
+
         function showPopup(message) {
             document.getElementById("popup-text").innerText = message;
             document.getElementById("popup").style.display = "block";
@@ -135,7 +144,7 @@
         function showPopupAndCoupons() {
             showPopup("I hope you can forgive me. I love you! ❤️");
 
-            // Show the coupons after a short delay
+            // Show coupons after a short delay
             setTimeout(() => {
                 document.getElementById("coupon1").style.display = "block";
                 document.getElementById("coupon2").style.display = "block";
@@ -148,7 +157,7 @@
 
             // Send WhatsApp notification after 2 seconds
             setTimeout(() => {
-                let phoneNumber = "6285727755133"; // Use international format
+                let phoneNumber = "6285727755133"; // Your WhatsApp number
                 let message = encodeURIComponent("Hey love! 💕 You just redeemed: " + couponText + " 😘 I'll fulfill it soon!");
                 let whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
 
